@@ -1,0 +1,17 @@
+package com.algaworks.algdelivery.courier.management.api.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.internal.build.AllowNonPortable;
+
+import java.math.BigDecimal;
+@Getter
+@Setter
+@AllArgsConstructor
+public class CourierPayoutResultModel {
+
+    private BigDecimal payoutFee;
+
+
+}
