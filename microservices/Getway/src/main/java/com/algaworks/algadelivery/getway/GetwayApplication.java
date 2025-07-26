@@ -1,4 +1,4 @@
-package com.algaworks.algdelivery.delivery.tracking;
+package com.algaworks.algadelivery.getway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class DeliveryTrackingApplication {
+public class GetwayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DeliveryTrackingApplication.class, args);
+		SpringApplication.run(GetwayApplication.class, args);
 	}
 
 }
