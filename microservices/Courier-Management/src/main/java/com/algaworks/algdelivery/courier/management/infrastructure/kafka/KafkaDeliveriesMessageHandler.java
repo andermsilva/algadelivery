@@ -1,10 +1,12 @@
 package com.algaworks.algdelivery.courier.management.infrastructure.kafka;
 
 
+import com.algaworks.algdelivery.courier.management.domain.service.CourierDeliveryService;
 import com.algaworks.algdelivery.courier.management.infrastructure.event.DeliveryFulfilledIntegrationEvent;
 import com.algaworks.algdelivery.courier.management.infrastructure.event.DeliveryPlacedIntegrationEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -24,6 +26,9 @@ import java.nio.charset.StandardCharsets;
 public class KafkaDeliveriesMessageHandler {
 
 
+    private final CourierDeliveryService courierDeliveryService;
+
+
     @KafkaHandler(isDefault = true)
     public void defaultHandler(@Payload Object object) {
 
@@ -33,10 +38,12 @@ public class KafkaDeliveriesMessageHandler {
     @KafkaHandler
     public void handler(@Payload DeliveryPlacedIntegrationEvent event) {
         log.info ( "Recived: {}" , event );
+        courierDeliveryService.assign ( event.getDeliveryId () );
     }
 
     @KafkaHandler
     public void handler(@Payload DeliveryFulfilledIntegrationEvent event) {
         log.info ( "Recived: {}" , event );
+        courierDeliveryService.fulfill ( event.getDeliveryId () );
     }
 }
